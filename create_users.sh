@@ -6,9 +6,12 @@ echo "Error: This script must be run as root."
 exit 1
 fi
 
-#Lopp through all usernames passed to the script
+#Loop through all usernames passed to the script
 for username in "$@"
 do 
+
+#Save existing users before creating new ones
+existing_users=$(cut -d: -f1 /etc/passwd)
 
 #Create the user and their home directory
 useradd -m "$username"
