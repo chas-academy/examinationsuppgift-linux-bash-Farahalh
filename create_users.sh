@@ -23,15 +23,12 @@ chmod 700 "/home/$username/Documents"
 chmod 700 "/home/$username/Downloads"
 chmod 700 "/home/$username/Work"
 
-#Make the user the owner of their home directory and files
-chown -R "$username:$username" "/home/$username"
-
 #Create welcome file
 echo "Välkommen $username" > "/home/$username/welcome.txt"
 
-#Add header
-echo "Andra användare i systemet:" >> "/home/$username/welcome.txt"
-
 #Add more users
 cut -d: -f1 /etc/passwd | grep -v "^$username$" >> "/home/$username/welcome.txt"
+
+#Make the user the owner of their home directory and files
+chown -R "$username:$username" "/home/$username"
 done
